@@ -82,7 +82,7 @@ final class JerseyUploadMain {
         server.setHandler(handlerCollection);
 
         Connector connector = new SelectChannelConnector();
-        connector.setPort(8080);
+        connector.setPort(8082);
         connector.setHost("127.0.0.1");
         server.addConnector(connector);
 

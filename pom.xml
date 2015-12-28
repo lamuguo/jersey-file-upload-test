@@ -208,17 +208,34 @@
           </includes>
         </configuration>
       </plugin>
-
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.3</version>
+        <version>2.6</version>
         <configuration>
-          <descriptors>
-            <descriptor>../assembly/jar-with-dep-jars.xml</descriptor>
-          </descriptors>
-          <finalName>${project.artifactId}-dist-${maven.build.timestamp}</finalName>
-          <appendAssemblyId>false</appendAssemblyId>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
         </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>attached</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <finalName>jerseyupload</finalName>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <archive>
+                <manifest>
+                  <mainClass>com.palominolabs.jersey.JerseyUploadMain</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
